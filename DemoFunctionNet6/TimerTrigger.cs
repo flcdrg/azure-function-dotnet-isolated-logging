@@ -14,9 +14,9 @@ namespace DemoFunctionNet6
         }
 
         [Function("TimerTrigger")]
-        public void Run([TimerTrigger("0 */1 * * * *")] TimerInfo myTimer)
+        public void Run([TimerTrigger("0 */1 * * * *", RunOnStartup = true)] TimerInfo myTimer)
         {
-            _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+            _logger.LogWarning($"C# Timer trigger function executed at: {DateTime.Now}");
             
             if (myTimer.ScheduleStatus is not null)
             {
