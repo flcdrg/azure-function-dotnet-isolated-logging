@@ -9,10 +9,10 @@ namespace DemoFunctionNet6
         private readonly BloggingContext _context;
         private readonly ILogger _logger;
 
-        public TimerTrigger(ILoggerFactory loggerFactory, BloggingContext context)
+        public TimerTrigger(ILogger<TimerTrigger> logger, BloggingContext context)
         {
             _context = context;
-            _logger = loggerFactory.CreateLogger<TimerTrigger>();
+            _logger = logger;
         }
 
         [Function("TimerTrigger")]
