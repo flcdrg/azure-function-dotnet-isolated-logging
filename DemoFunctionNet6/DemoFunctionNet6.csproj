@@ -25,6 +25,11 @@
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+	  <None Update="local.settings.template.json">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		  <DependentUpon>local.settings.json</DependentUpon>
+	  </None>
     <None Update="local.settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
@@ -33,4 +38,8 @@
   <ItemGroup>
     <Using Include="System.Threading.ExecutionContext" Alias="ExecutionContext" />
   </ItemGroup>
+
+	<Target Name="CreateLocalSettingsJson" Inputs="local.settings.template.json" Outputs="local.settings.json" Condition="!exists('local.settings.json')" BeforeTargets="BeforeBuild;Restore">
+		<Copy SourceFiles="local.settings.template.json" DestinationFiles="local.settings.json" />
+	</Target>
 </Project>
