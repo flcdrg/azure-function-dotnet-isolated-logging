@@ -39,7 +39,9 @@ jobs:
     - name: 'Resolve Project Dependencies Using Dotnet'
       working-directory: ${{ matrix.directory }}
       run: |
-        dotnet publish --output ./output
+        dotnet publish Func --output $RUNNER_TEMP/output
+
+        ls -al $RUNNER_TEMP/output
 
 #    - name: 'Run Azure Functions Action'
 #      uses: Azure/functions-action@v1
