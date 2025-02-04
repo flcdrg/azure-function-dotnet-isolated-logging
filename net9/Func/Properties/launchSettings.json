@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "DemoFunctionNet6": {
+    "Func": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7295",
+      "commandLineArgs": "--port 7138",
       "launchBrowser": false
     }
   }
