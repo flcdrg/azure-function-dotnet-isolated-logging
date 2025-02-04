@@ -36,7 +36,7 @@ jobs:
       with:
         dotnet-version: ${{ matrix.DOTNET_VERSION}}
 
-    - name: 'Resolve Project Dependencies Using Dotnet'
+    - name: 'Build .NET'
       working-directory: ${{ matrix.directory }}
       run: |
         dotnet publish Func --output $RUNNER_TEMP/output
