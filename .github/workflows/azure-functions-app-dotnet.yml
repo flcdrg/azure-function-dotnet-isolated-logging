@@ -42,7 +42,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           template-file: ./infra/main.bicep
           action-on-unmanage-resources: delete
-          deny-settings-mode: denyWriteAndDelete
+          deny-settings-mode: none
 
   build-and-deploy:
     needs: infrastructure
