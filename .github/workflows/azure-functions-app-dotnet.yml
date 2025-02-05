@@ -25,11 +25,27 @@ jobs:
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@v4
 
-    # If you want to use Azure RBAC instead of Publish Profile, then uncomment the task below
-    # - name: 'Login via Azure CLI'
-    #   uses: azure/login@v1
-    #   with:
-    #     creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }} # set up AZURE_RBAC_CREDENTIALS secrets in your repository
+    - name: "Login via Azure CLI"
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Deploy Bicep
+      uses: azure/bicep-deploy@v2
+      with:
+        type: deploymentStack
+        operation: create
+        name: Development
+        location: australiaeast
+        scope: resourceGroup
+        resource-group-name: rg-funcs-logging-australiaeast
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        template-file: ./infra/main.bicep
+        action-on-unmanage-resources: delete
+        deny-settings-mode: denyWriteAndDelete
 
     - name: Setup DotNet ${{ matrix.DOTNET_VERSION}} Environment
       uses: actions/setup-dotnet@v4
