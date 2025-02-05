@@ -17,7 +17,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   properties: {
     supportsHttpsTrafficOnly: true
     defaultToOAuthAuthentication: true
-    allowBlobPublicAccess: false
+    allowBlobPublicAccess: true
     minimumTlsVersion: 'TLS1_2'
     publicNetworkAccess: 'Enabled'
   }
@@ -63,8 +63,6 @@ module functionApp './function.bicep' = {
     functionAppName: 'func-funcs-net8-logging-australiaeast'
     location: location
     hostingPlanId: hostingPlan.id
-    appInsightsConnectionString: applicationInsights.properties.ConnectionString
-    storageAccountName: storageAccount.name
-    storageAccountKey: storageAccount.listKeys().keys[0].value
-  }
+    applicationInsightsName: applicationInsights.name
+    storageAccountName: storageAccount.name  }
 }
