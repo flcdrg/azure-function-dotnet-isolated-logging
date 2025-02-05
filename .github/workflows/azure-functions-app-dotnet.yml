@@ -53,9 +53,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - DOTNET_VERSION: 8.0
+          - DOTNET_VERSION: "8.0"
             directory: net8
-          - DOTNET_VERSION: 9.0
+          - DOTNET_VERSION: "9.0"
             directory: net9
 
     runs-on: ubuntu-latest
