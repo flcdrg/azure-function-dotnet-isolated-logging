@@ -57,7 +57,7 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 
-module functionApp './function.bicep' = {
+module functionAppNet8 './function.bicep' = {
   name: 'func-funcs-net8-logging-australiaeast'
   params: {
     functionAppName: 'func-funcs-net8-logging-australiaeast'
@@ -65,4 +65,16 @@ module functionApp './function.bicep' = {
     hostingPlanId: hostingPlan.id
     applicationInsightsName: applicationInsights.name
     storageAccountName: storageAccount.name  }
+}
+
+module functionAppNet9 './function.bicep' = {
+  name: 'func-funcs-net9-logging-australiaeast'
+  params: {
+    functionAppName: 'func-funcs-net9-logging-australiaeast'
+    location: location
+    hostingPlanId: hostingPlan.id
+    applicationInsightsName: applicationInsights.name
+    storageAccountName: storageAccount.name
+    functionAppRuntimeVersion: '9.0'
+  }
 }

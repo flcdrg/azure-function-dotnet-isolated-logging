@@ -83,10 +83,9 @@ jobs:
 
           ls -al $RUNNER_TEMP/output
 
-#    - name: 'Run Azure Functions Action'
-#      uses: Azure/functions-action@v1
-#      id: fa
-#      with:
-#        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-#        package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-#        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }} # Remove publish-profile to use Azure RBAC
+      - name: 'Run Azure Functions Action'
+        uses: Azure/functions-action@v1
+        id: funcaction
+        with:
+          app-name: func-funcs-${{ matrix.DOTNET_VERSION}}-logging-australiaeast
+          package: '$RUNNER_TEMP/output'
