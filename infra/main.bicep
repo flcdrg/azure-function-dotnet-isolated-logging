@@ -14,10 +14,12 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   sku: {
     name: storageAccountType
   }
-  kind: 'Storage'
+  kind: 'StorageV2'
   properties: {
     supportsHttpsTrafficOnly: true
     defaultToOAuthAuthentication: true
+    allowBlobPublicAccess: false
+    publicNetworkAccess: 'Disabled'
   }
 }
 
@@ -25,10 +27,20 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: hostingPlanName
   location: location
   sku: {
-    name: 'F1'
-    tier: 'Dynamic'
+    name: 'FC1'
+    tier: 'FlexConsumption'
   }
   properties: {}
+}
+
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
+  name: 'law-funcs-logging-australiaeast'
+  location: location
+  properties: {
+    sku: {
+      name: 'PerGB2018'
+    }
+  }
 }
 
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
@@ -38,6 +50,7 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   properties: {
     Application_Type: 'web'
     Request_Source: 'rest'
+    WorkspaceResourceId: logAnalyticsWorkspace.id
   }
 }
 
