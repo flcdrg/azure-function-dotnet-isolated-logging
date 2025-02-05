@@ -88,4 +88,4 @@ jobs:
         id: funcaction
         with:
           app-name: func-funcs-${{ matrix.DOTNET_VERSION}}-logging-australiaeast
-          package: '$RUNNER_TEMP/output'
+          package: '${{ runner.temp }}/output'
