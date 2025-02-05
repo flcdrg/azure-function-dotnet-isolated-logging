@@ -3,8 +3,6 @@ param storageAccountType string = 'Standard_LRS'
 @description('Location for all resources.')
 param location string = resourceGroup().location
 
-@description('Location for Application Insights')
-param appInsightsLocation string
 
 var hostingPlanName = 'plan-funcs-logging-australiaeast'
 var applicationInsightsName = 'appi-funcs-logging-australiaeast'
@@ -35,7 +33,7 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2021-03-01' = {
 
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: applicationInsightsName
-  location: appInsightsLocation
+  location: location
   kind: 'web'
   properties: {
     Application_Type: 'web'
