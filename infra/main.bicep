@@ -27,8 +27,9 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: hostingPlanName
   location: location
   sku: {
-    name: 'FC1'
-    tier: 'FlexConsumption'
+    name: 'Y1'
+    // name: 'FC1'
+    // tier: 'FlexConsumption'
   }
   kind: 'functionapp'
   properties: {
@@ -64,7 +65,8 @@ module functionAppNet8 './function.bicep' = {
     location: location
     hostingPlanId: hostingPlan.id
     applicationInsightsName: applicationInsights.name
-    storageAccountName: storageAccount.name  }
+    storageAccountName: storageAccount.name
+  }
 }
 
 module functionAppNet9 './function.bicep' = {
