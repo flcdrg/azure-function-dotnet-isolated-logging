@@ -53,9 +53,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - DOTNET_VERSION: "8.0"
+          - DOTNET_VERSION: "8.0.x"
             directory: net8
-          - DOTNET_VERSION: "9.0"
+          - DOTNET_VERSION: "9.0.x"
             directory: net9
 
     runs-on: ubuntu-latest
@@ -67,7 +67,7 @@ jobs:
       - name: Setup DotNet ${{ matrix.DOTNET_VERSION}} Environment
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ matrix.DOTNET_VERSION}}.x
+          dotnet-version: ${{ matrix.DOTNET_VERSION}}
 
       - name: "Build .NET"
         working-directory: ${{ matrix.directory }}
@@ -83,9 +83,9 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: 'Run Azure Functions Action'
+      - name: "Run Azure Functions Action"
         uses: Azure/functions-action@v1
         id: funcaction
         with:
-          app-name: func-funcs-${{ matrix.DOTNET_VERSION}}-logging-australiaeast
-          package: '${{ runner.temp }}/output'
+          app-name: func-funcs-${{ matrix.directory}}-logging-australiaeast
+          package: "${{ runner.temp }}/output"
