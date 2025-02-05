@@ -53,9 +53,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - DOTNET_VERSION: 8.0.x
+          - DOTNET_VERSION: 8.0
             directory: net8
-          - DOTNET_VERSION: 9.0.x
+          - DOTNET_VERSION: 9.0
             directory: net9
 
     runs-on: ubuntu-latest
@@ -64,17 +64,10 @@ jobs:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@v4
 
-      - name: "Login via Azure CLI"
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
       - name: Setup DotNet ${{ matrix.DOTNET_VERSION}} Environment
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ matrix.DOTNET_VERSION}}
+          dotnet-version: ${{ matrix.DOTNET_VERSION}}.x
 
       - name: "Build .NET"
         working-directory: ${{ matrix.directory }}
@@ -82,6 +75,13 @@ jobs:
           dotnet publish Func --output $RUNNER_TEMP/output
 
           ls -al $RUNNER_TEMP/output
+
+      - name: "Login via Azure CLI"
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
