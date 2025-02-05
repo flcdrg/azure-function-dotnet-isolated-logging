@@ -3,7 +3,6 @@ param storageAccountType string = 'Standard_LRS'
 @description('Location for all resources.')
 param location string = resourceGroup().location
 
-
 var hostingPlanName = 'plan-funcs-logging-australiaeast'
 var applicationInsightsName = 'appi-funcs-logging-australiaeast'
 var storageAccountName = 'stfuncsloggingaue'
@@ -30,7 +29,10 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2021-03-01' = {
     name: 'FC1'
     tier: 'FlexConsumption'
   }
-  properties: {}
+  kind: 'functionapp'
+  properties: {
+    reserved: true
+  }
 }
 
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
