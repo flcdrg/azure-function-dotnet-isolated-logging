@@ -2,6 +2,8 @@
 
 Example of a .NET Azure Function with isolated worker model and Serilog logging
 
+Azure Functions are using the new Flex Consumption plan. This is not available yet in all regions. Run `az functionapp list-flexconsumption-locations --output table` to list compatible regions.
+
 ## Configure Azure environment
 
 ```bash
