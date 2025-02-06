@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.Runtime.InteropServices;
+using FuncWithSerilog;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -17,6 +18,7 @@ try
                 TelemetryConverter.Traces))
         .ConfigureFunctionsWebApplication()
         .ConfigureServices(services => {
+            services.AddSingleton<ITelemetryInitializer, VersionTelemetryInitializer>();
             services.AddApplicationInsightsTelemetryWorkerService();
         })
 
