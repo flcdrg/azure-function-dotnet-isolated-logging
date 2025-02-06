@@ -75,8 +75,7 @@ jobs:
         working-directory: ${{ matrix.directory }}
         run: |
           dotnet publish Func --output $RUNNER_TEMP/output
-
-          ls -al $RUNNER_TEMP/output
+          dotnet publish FuncWithSerilog --output $RUNNER_TEMP/output-serilog
 
       - name: "Login via Azure CLI"
         uses: azure/login@v2
@@ -85,9 +84,15 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: "Run Azure Functions Action"
+      - name: "Publish Azure Functions ${{ matrix.directory}}"
         uses: Azure/functions-action@v1
-        id: funcaction
         with:
           app-name: func-funcs-${{ matrix.directory}}-logging-australiaeast
           package: "${{ runner.temp }}/output"
+
+      - name: "Publish Azure Functions ${{ matrix.directory}} with Serilog"
+        uses: Azure/functions-action@v1
+        with:
+          app-name: func-funcs-${{ matrix.directory}}-serilog-logging-australiaeast
+          package: "${{ runner.temp }}/output-serilog"
+  

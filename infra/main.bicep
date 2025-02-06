@@ -69,10 +69,33 @@ module functionAppNet8 './function.bicep' = {
   }
 }
 
+module functionAppNet8Serilog './function.bicep' = {
+  name: 'func-funcs-net8-serilog-logging-australiaeast'
+  params: {
+    functionAppName: 'func-funcs-net8-serilog-logging-australiaeast'
+    location: location
+    hostingPlanId: hostingPlan.id
+    applicationInsightsName: applicationInsights.name
+    storageAccountName: storageAccount.name
+  }
+}
+
 module functionAppNet9 './function.bicep' = {
   name: 'func-funcs-net9-logging-australiaeast'
   params: {
     functionAppName: 'func-funcs-net9-logging-australiaeast'
+    location: location
+    hostingPlanId: hostingPlan.id
+    applicationInsightsName: applicationInsights.name
+    storageAccountName: storageAccount.name
+    functionAppRuntimeVersion: '9.0'
+  }
+}
+
+module functionAppNet9Serilog './function.bicep' = {
+  name: 'func-funcs-net9-serilog-logging-australiaeast'
+  params: {
+    functionAppName: 'func-funcs-net9-serilog-logging-australiaeast'
     location: location
     hostingPlanId: hostingPlan.id
     applicationInsightsName: applicationInsights.name
