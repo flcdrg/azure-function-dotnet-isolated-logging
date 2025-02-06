@@ -63,6 +63,8 @@ jobs:
     steps:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup DotNet ${{ matrix.DOTNET_VERSION}} Environment
         uses: actions/setup-dotnet@v4
