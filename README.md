@@ -1,8 +1,8 @@
-# azure-function-dotnet-isolated-logging
+# Logging .NET Azure Functions in isolated worker model
 
-Example of a .NET Azure Function with isolated worker model and Serilog logging
+Examples of 'vanilla' App Insights logging in .NET Azure Function apps, and integrating [Serilog](https://serilog.net/).
 
-Azure Functions are using the new Flex Consumption plan. This is not available yet in all regions. Run `az functionapp list-flexconsumption-locations --output table` to list compatible regions.
+<!-- Azure Functions are using the new Flex Consumption plan. This is not available yet in all regions. Run `az functionapp list-flexconsumption-locations --output table` to list compatible regions. -->
 
 ## Configure Azure environment
 

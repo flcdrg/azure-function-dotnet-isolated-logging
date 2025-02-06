@@ -5,12 +5,12 @@
 
 version: 2
 updates:
-  - package-ecosystem: "github-actions" # See documentation for possible values
+  - package-ecosystem: "github-actions"
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
 
-  - package-ecosystem: "dotnet" # See documentation for possible values
+  - package-ecosystem: "nuget"
     directories:
      - net8
      - net9
