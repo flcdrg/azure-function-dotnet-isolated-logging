@@ -1,10 +1,15 @@
 # Logging .NET Azure Functions in isolated worker model
 
-Examples of 'vanilla' App Insights logging in .NET Azure Function apps, and integrating [Serilog](https://serilog.net/).
+Examples of 'vanilla' App Insights logging in .NET Azure Function apps, and integrating [Serilog](https://serilog.net/), with both .NET 8 and 9.
+
+- [.NET 8](net8/Func/Program.cs)
+- [.NET 8 with Serilog](net8/FuncWithSerilog/Program.cs)
+- [.NET 9](net9/Func/Program.cs)
+- [.NET 9 with Serilog](net9/FuncWithSerilog/Program.cs)
 
 <!-- Azure Functions are using the new Flex Consumption plan. This is not available yet in all regions. Run `az functionapp list-flexconsumption-locations --output table` to list compatible regions. -->
 
-## Configure Azure environment
+## Azure environment configuration
 
 ```bash
 az group create --name rg-funcs-logging-australiaeast --location australiaeast
