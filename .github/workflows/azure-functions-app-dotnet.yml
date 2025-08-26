@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: "Checkout GitHub Action"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: "Login via Azure CLI"
         uses: azure/login@v2
@@ -64,7 +64,7 @@ jobs:
     environment: dev
     steps:
       - name: "Checkout GitHub Action"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
