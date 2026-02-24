@@ -18,7 +18,6 @@ try
                 TelemetryConverter.Traces))
         .ConfigureFunctionsWebApplication()
         .ConfigureServices(services => {
-            services.AddSingleton<ITelemetryInitializer, VersionTelemetryInitializer>();
             services.AddApplicationInsightsTelemetryWorkerService();
         })
 
