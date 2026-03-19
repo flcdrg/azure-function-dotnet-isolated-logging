@@ -38,7 +38,7 @@ resource functionApp 'Microsoft.Web/sites@2024-04-01' = {
           value: storageAccountName
         }
         {
-          name: 'APPINSIGHTS_CONNECTIONSTRING'
+          name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
           value: appInsights.properties.ConnectionString
         }
       ]
