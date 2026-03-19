@@ -1,4 +1,3 @@
-
 param functionAppName string
 param location string
 param hostingPlanId string
@@ -47,6 +46,10 @@ resource functionApp 'Microsoft.Web/sites@2024-04-01' = {
         {
           name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
           value: appInsights.properties.InstrumentationKey
+        }
+        {
+          name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+          value: appInsights.properties.ConnectionString
         }
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
