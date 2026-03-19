@@ -9,6 +9,14 @@ Examples of 'vanilla' App Insights logging in .NET Azure Function apps, and inte
 
 <!-- Azure Functions are using the new Flex Consumption plan. This is not available yet in all regions. Run `az functionapp list-flexconsumption-locations --output table` to list compatible regions. -->
 
+## Microsoft.ApplicationInsights.WorkerService 3.0.0
+
+The v3 version of this package introduced breaking changes, including a dependency on Microsoft.ApplicationInsights, Version=3.0.0.1, which is incompatible with the `Microsoft.Azure.Functions.Worker.ApplicationInsights` package.
+
+The Functions team [have commented](https://github.com/Azure/azure-functions-dotnet-worker/issues/3322#issuecomment-4050282773) that they will not be releasing a 3.0-compatible version of `Microsoft.Azure.Functions.Worker.ApplicationInsights`, and instead encourage the move to OpenTelemetry monitoring.
+
+For Functions still using `Microsoft.Azure.Functions.Worker.ApplicationInsights`, then stick with the latest v2 release of `Microsoft.ApplicationInsights.WorkerService`
+
 ## Azure environment configuration
 
 ```bash
